@@ -1,3 +1,14 @@
+Object.prototype.hasOwnProperties = function(arr) {
+  var me = this;
+  return arr.every(function(prop){
+    return me.hasOwnProperty(prop);
+  });
+}
+
+var fontSize = 20;
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
 function submit() {
   var nodeRegex = /\+-*>.+}/g
   var nameRegex = /\+-*>(.+){/
@@ -26,12 +37,22 @@ function submit() {
     }
     console.log(name);
     console.log(obj);
-    if (['x', 'y', 'width', 'height'].every(function(prop){
-      return obj.hasOwnProperty(prop);
-    })) {
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
+    if (obj.hasOwnProperties(['x', 'y', 'width', 'height'])) {
+      ctx.strokeStyle = 'gray';
       ctx.strokeRect(obj.x, obj.y, obj.width, obj.height);
+    }
+
+    if (obj.hasOwnProperties(['x', 'y', 'text'])) {
+      ctx.font = fontSize + 'px sans-serif';
+      ctx.strokeStyle = 'white';
+      ctx.fillStyle = 'darkslategray';
+      ctx.fillText(obj.text, obj.x + 5, obj.y + fontSize);
+    }
+
+    if (obj.hasOwnProperties(['x', 'y', 'res-name'])) {
+      ctx.fillStyle = 'thistle';
+      ctx.font = fontSize*0.7 + 'px monospace';
+      ctx.fillText(obj['res-name'], obj.x, obj.y - 5);
     }
   }
 }
