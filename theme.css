@@ -1,5 +1,34 @@
 #dump {
-  width: 100%;
+  width: 100px;
   height: 50px;
   font-family: monospace;
+}
+
+body {
+  margin: 0;
+}
+
+#sidebar {
+  margin: 0 10 0 0;
+  padding: 10;
+  font-family: sans-serif;
+  float: left;
+  height: 100%;
+  background-color: lightgray;
+}
+
+#filters {
+  font-family: monospace;
+  color: dimgray;
+}
+
+#myCanvas {
+  border-color: gray;
+  border-style: solid;
+  border-width: thin;
+}
+
+.dropdown {
+  width: 100px;
+  margin: 5 0 10 0;
 }
